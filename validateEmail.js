@@ -1,29 +1,28 @@
 const EmailValidator = require('email-deep-validator');
 const emailValidator = new EmailValidator();
 
-verifyEmail();
-async function validateEmail(email) {
+const validateEmail = async (email) => {
     const {
         wellFormed, validDomain, validMailbox
     } = await emailValidator.verify(email);
     return [wellFormed, validDomain, validMailbox];
 }
 
-async function verifyEmail() {
-    var name = "First Last";
-    var website = "domain.com";
-    var firstName = name.split(' ').slice(0, -1).join(' ');
-    var lastName = name.split(' ').slice(-1).join(' ');
-    var domain = "@" + website;
-    var fname = firstName + domain;
-    var lname = lastName + domain;
-    var fInitialLastName = checkFinitialLastName(firstName, lastName) + domain;
-    var fNameDotLName = checkFnameDotLname(firstName, lastName) + domain;
-    var firstNameLastName = checkFnameLname(firstName, lastName) + domain;
-    var fName_LName = checkFname_Lname(firstName, lastName) + domain;
-    var lastNameFInitial = checkLNameFInitial(firstName, lastName) + domain;
-    var firstDotLInitial = checkFirstDotLInitial(firstName, lastName) + domain;
-    var firstLInitial = checkFirstLInitial(firstName, lastName) + domain;
+const verifyEmail = async () => {
+    let name = "First Last";
+    let website = "live.com";
+    let firstName = name.split(' ').slice(0, -1).join(' ');
+    let lastName = name.split(' ').slice(-1).join(' ');
+    let domain = "@" + website;
+    let fname = firstName + domain;
+    let lname = lastName + domain;
+    let fInitialLastName = checkFinitialLastName(firstName, lastName) + domain;
+    let fNameDotLName = checkFnameDotLname(firstName, lastName) + domain;
+    let firstNameLastName = checkFnameLname(firstName, lastName) + domain;
+    let fName_LName = checkFname_Lname(firstName, lastName) + domain;
+    let lastNameFInitial = checkLNameFInitial(firstName, lastName) + domain;
+    let firstDotLInitial = checkFirstDotLInitial(firstName, lastName) + domain;
+    let firstLInitial = checkFirstLInitial(firstName, lastName) + domain;
 
     //check firstname - First@domain.com
     let promise1 = new Promise((resolve, reject) => {
@@ -89,29 +88,18 @@ async function verifyEmail() {
     console.log(lastNameEmail, lname);
 }
 
-function checkFinitialLastName(first, last) {
-    return first.slice(0, 1) + last;
-}
-function checkFnameDotLname(first, last) {
-    return first + "." + last;
-}
+const checkFinitialLastName = (first, last) =>  first.slice(0, 1) + last;
 
-function checkFnameLname(first, last) {
-    return first + last;
-}
+const checkFnameDotLname = (first, last) => first + "." + last;
 
-function checkFname_Lname(first, last) {
-    return first + "_" + last;
-}
+const checkFnameLname = (first, last) => first + last;
 
-function checkLNameFInitial(first, last) {
-    return last + first.slice(0, 1);
-}
+const checkFname_Lname = (first, last) => first + "_" + last;
 
-function checkFirstLInitial(first, last) {
-    return first + last.slice(0, 1);
-}
+const checkLNameFInitial = (first, last) => last + first.slice(0, 1);
 
-function checkFirstDotLInitial(first, last) {
-    return first + "." + last.slice(0, 1);
-}
+const checkFirstLInitial = (first, last) => first + last.slice(0, 1);
+
+const checkFirstDotLInitial = (first, last) => first + "." + last.slice(0, 1);
+
+verifyEmail();
